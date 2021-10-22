@@ -34,7 +34,7 @@ module.exports = {
     );
 
     const cartID = newCart.map((item) => item.id);
-    console.log(cartID);
+
     const newOrder = await strapi.services.order.create({
       total: realTotal,
       cart: cartID,
