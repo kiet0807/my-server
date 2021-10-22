@@ -20,24 +20,21 @@ module.exports = {
       return ctx.throw(400, "Please, specify products");
     }
 
-    const newCart = Promise.all(
-      cart.map(
-        (x) =>
-          strapi.services.cart -
-          item.create({
-            quantity: x.quantity,
-            product: { id: x.id },
-          })
+    const newCart = await Promise.all(
+      cart.map((x) =>
+        strapi.services[`cart-item`].create({
+          quantity: x.quantity,
+          product: x.id,
+        })
       )
     );
-
-    const realTotal = (await newCart).reduce(
+    const realTotal = newCart.reduce(
       (sum, item) => sum + item.product.price * item.quantity,
       0
     );
 
-    const cartID = (await newCart).map((item) => ({ id: item.id }));
-
+    const cartID = newCart.map((item) => item.id);
+    console.log(cartID);
     const newOrder = await strapi.services.order.create({
       total: realTotal,
       cart: cartID,

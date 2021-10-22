@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "cart_items",
   "info": {
-    "name": "cartItem"
+    "name": "cart",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -16,8 +17,8 @@
       "required": true
     },
     "product": {
-      "model": "product",
-      "via": "cart_items"
+      "via": "cart_items",
+      "model": "product"
     },
     "order": {
       "via": "cart",
