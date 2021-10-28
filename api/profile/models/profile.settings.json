@@ -1,8 +1,8 @@
 {
   "kind": "collectionType",
-  "collectionName": "tokens",
+  "collectionName": "profiles",
   "info": {
-    "name": "token"
+    "name": "profile"
   },
   "options": {
     "increments": true,
@@ -12,9 +12,9 @@
   "pluginOptions": {},
   "attributes": {
     "user": {
-      "via": "token",
       "plugin": "users-permissions",
-      "model": "user"
+      "model": "user",
+      "via": "profile"
     }
   }
 }
